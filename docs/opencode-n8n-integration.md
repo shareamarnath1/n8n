@@ -21,8 +21,22 @@ For Zen, use n8n’s **OpenAI-compatible** integration with a **custom base URL*
 
 ## This VM (already configured)
 
-- Workflow **Local chatbot with RAG** (`hqcWPkklqJE5xWZx`) uses **OpenCode Zen** chat model `deepseek-v4-flash-free` on the AI Agent (Ollama chat model removed from that agent).
+- Workflow **Local chatbot with RAG** (`hqcWPkklqJE5xWZx`) uses:
+  - **Primary:** OpenCode Zen → `deepseek-v4-flash-free` (OpenAI Chat Model, base URL `https://opencode.ai/zen/v1`)
+  - **Fallback:** Ollama → `llama3.2:1b` (only if OpenCode errors or is unreachable)
+  - **AI Agent v3.1** with **Enable Fallback Model** on
+- Every chat reply should start with a **Model:** line (see system prompt on the AI Agent).
 - API key is in n8n credential **OpenCode Zen** (not in this repo). Optional local reference: `~/.config/n8n-opencode.env` on the agent VM (`chmod 600`).
+- Workflow is **active** with **public chat** webhook for testing.
+
+### Model preference behavior
+
+| Order | Model | When |
+|-------|--------|------|
+| 1 | `Model: OpenCode Zen (deepseek-v4-flash-free)` | Normal path |
+| 2 | `Model: Ollama (llama3.2:1b)` | OpenCode fails (bad key, outage, invalid model id, etc.) |
+
+Verified via webhook: primary answered `2+2`; with a broken primary model id, fallback answered `5+5` with the Ollama label.
 
 ## Quick API test (terminal)
 
