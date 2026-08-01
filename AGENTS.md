@@ -38,13 +38,13 @@ Data is stored under `~/.n8n` by default.
 
 `http://127.0.0.1:5678` on your Mac only works if Cursor **port-forwards** 5678 from this VM (plug icon or **Ports** panel while this agent run is active). If that fails, use the **public tunnel** instead.
 
-**Current public URL** (regenerated when the tunnel restarts): see [`.n8n-public-url`](.n8n-public-url) in the repo, or run:
+**Current public URL** (regenerated when the tunnel restarts): see [`docs/MAC-ACCESS.md`](docs/MAC-ACCESS.md), or run:
 
 ```bash
 bash scripts/start-n8n-with-mac-access.sh
 ```
 
-Open in Safari/Chrome on your Mac (examples — replace with the URL from `.n8n-public-url`):
+Open in Safari/Chrome on your Mac (see [`docs/MAC-ACCESS.md`](docs/MAC-ACCESS.md) for the live link):
 
 - Editor home: `https://<tunnel-host>/`
 - RAG workflow: `https://<tunnel-host>/workflow/hqcWPkklqJE5xWZx`
